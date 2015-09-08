@@ -1,0 +1,28 @@
+{
+  Script:      [COLORIZE] for YahCoLoRiZe
+  Author:      dxzl@live.com
+  File:        colorize.ops
+  Version:     1.0
+  Vortec:      0.4.13 or higher
+  YahCoLoRiZe: 5.70 or higher
+  Usage:       Create alias CX: /runscript [yc] $activewin *1
+               Then in a chat window you type: /cx sometext
+
+ This Vortec script will be called by the alias to send text to
+ YahCoLoRiZe where it will be processed and returned to your chat-window :-)
+}
+var Serv,Chan,Wind,Parms: string;
+begin
+  Serv := ActiveServer;
+  Chan := ActiveChannel;
+  Wind := $1;
+  Parms := *2;
+  if Chan <> '' then
+    Command('/ddepoke colorize command ddechan '+Chan)
+  else if Serv <> '' then
+    Command('/ddepoke colorize command ddechan status')
+  else
+    Command('/ddepoke colorize command ddechan '+Wind);
+  Command('/ddepoke colorize command ddevtext '+Parms);
+end;
+
